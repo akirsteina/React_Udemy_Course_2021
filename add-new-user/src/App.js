@@ -1,5 +1,4 @@
-import React from 'react';
-import { useState } from 'react';
+import { useState, Fragment } from 'react';
 import AddNewUserForm from './components/Users/AddNewUserForm';
 import UsersList from './components/Users/UsersList';
 
@@ -18,11 +17,12 @@ function App() {
 	};
 
 	return (
-		<div>
+		<Fragment>
 			<AddNewUserForm onAddNewUser={addNewUserHandler} />
 			<UsersList users={usersList} />
-		</div>
+		</Fragment>
 	);
 }
 
 export default App;
+// <> and </> should also work as wrappers, but not always
