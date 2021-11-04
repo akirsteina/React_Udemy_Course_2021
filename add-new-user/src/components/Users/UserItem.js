@@ -1,8 +1,8 @@
 const UserItem = (props) => {
 	return (
-		<div>
+		<li>
 			{props.username} ({props.age} years old)
-		</div>
+		</li>
 	);
 };
 
