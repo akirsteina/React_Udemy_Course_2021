@@ -1,47 +1,59 @@
 import { useState } from 'react';
 import Button from '../UI/Button';
 import Card from '../UI/Card';
-import Modal from '../UI/ErrorModal';
+import ErrorModal from '../UI/ErrorModal';
 import styles from '../../assets/AddNewUser.module.css';
 
 const AddNewUserForm = (props) => {
 	const [enteredUsername, setEnteredUsername] = useState('');
 	const [enteredUserAge, setEnteredUserAge] = useState('');
+	const [error, setError] = useState('');
 
 	const usernameInputHandler = (event) => {
 		setEnteredUsername(event.target.value);
-		console.log(enteredUsername);
 	};
 	const userAgeInputHandler = (event) => {
 		setEnteredUserAge(event.target.value);
-		console.log(enteredUserAge);
+	};
+
+	const errorHandler = () => {
+		setError('');
 	};
 
 	const formSubmitHandler = (event) => {
-		let message;
 		event.preventDefault();
-		if (enteredUsername.trim().length === 0 && !enteredUserAge) {
-			message = 'Please add user data';
-			Modal(message);
+		if (enteredUsername.trim().length === 0 && enteredUserAge.trim().length === 0) {
+			setError({
+				title: 'Invalid input',
+				message: 'Please enter username and user age!',
+			});
 			return;
 		} else if (enteredUsername.trim().length === 0) {
-			message = 'No username';
-			Modal(message);
+			setError({
+				title: 'Invalid username',
+				message: 'Please enter username!',
+			});
 			setEnteredUserAge('');
 			return;
 		} else if (!enteredUserAge) {
-			message = 'No age';
-			Modal(message);
+			setError({
+				title: 'Invalid age',
+				message: 'Please enter user age!',
+			});
 			setEnteredUserAge('');
 			return;
-		} else if (enteredUserAge < 0) {
-			message = 'Please enter a value that is bigger than 0';
-			Modal(message);
+		} else if (+enteredUserAge < 1) {
+			setError({
+				title: 'Invalid age',
+				message: 'Please enter valid age (> 0)!',
+			});
 			setEnteredUserAge('');
 			return;
-		} else if (enteredUserAge % 1 !== 0) {
-			message = 'Please enter valid age';
-			Modal(message);
+		} else if (+enteredUserAge % 1 !== 0) {
+			setError({
+				title: 'Invalid age',
+				message: 'Please enter valid age (whole numbers)!',
+			});
 			setEnteredUserAge('');
 			return;
 		}
@@ -55,14 +67,10 @@ const AddNewUserForm = (props) => {
 		setEnteredUserAge('');
 	};
 
-	const button = {
-		title: 'Add new user',
-		type: 'submit',
-	};
-
 	return (
-		<Card>
-			<div className={styles.input}>
+		<div>
+			{error && <ErrorModal title={error.title} message={error.message} onConfirm={errorHandler} />}
+			<Card className={styles.input}>
 				<form onSubmit={formSubmitHandler}>
 					<div>
 						<label htmlFor='username'>Username</label>
@@ -72,10 +80,12 @@ const AddNewUserForm = (props) => {
 						<label htmlFor='age'>Age (Years)</label>
 						<input type='number' id='age' value={enteredUserAge} onChange={userAgeInputHandler} />
 					</div>
-					<Button title={button.title} type={button.type} />
+					<Button type={'submit'} onclick={formSubmitHandler}>
+						Add new user
+					</Button>
 				</form>
-			</div>
-		</Card>
+			</Card>
+		</div>
 	);
 };
 

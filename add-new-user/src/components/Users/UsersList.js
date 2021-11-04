@@ -1,13 +1,14 @@
-import UserItem from './UserItem';
 import Card from '../UI/Card';
 import style from '../../assets/UsersList.module.css';
 
 const UsersList = (props) => {
 	return (
-		<Card>
-			<ul className={style.users}>
+		<Card className={style.users}>
+			<ul>
 				{props.users.map((user) => (
-					<UserItem username={user.username} age={user.userAge} key={user.userId} />
+					<li key={user.userId}>
+						{user.username} ({user.userAge} years old)
+					</li>
 				))}
 			</ul>
 		</Card>
