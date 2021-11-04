@@ -65,12 +65,12 @@ const AddNewUserForm = (props) => {
 			<div className={styles.input}>
 				<form onSubmit={formSubmitHandler}>
 					<div>
-						<label>Username</label>
-						<input type='text' value={enteredUsername} onChange={usernameInputHandler} />
+						<label htmlFor='username'>Username</label>
+						<input type='text' id='username' value={enteredUsername} onChange={usernameInputHandler} />
 					</div>
 					<div>
-						<label>Age (Years)</label>
-						<input type='number' value={enteredUserAge} onChange={userAgeInputHandler} />
+						<label htmlFor='age'>Age (Years)</label>
+						<input type='number' id='age' value={enteredUserAge} onChange={userAgeInputHandler} />
 					</div>
 					<Button title={button.title} type={button.type} />
 				</form>
