@@ -2,23 +2,29 @@ import { useState } from 'react';
 import Button from '../UI/Button';
 import styles from '../../assets/AddNewUser.module.css';
 
-const AddNewUserForm = () => {
-	const [username, setUsername] = useState('');
-	const [userAge, setUserAge] = useState('');
+const AddNewUserForm = (props) => {
+	const [enteredUsername, setEnteredUsername] = useState('');
+	const [enteredUserAge, setEnteredUserAge] = useState('');
 
 	const usernameInputHandler = (event) => {
-		setUsername(event.target.value);
+		setEnteredUsername(event.target.value);
+		console.log(enteredUsername);
 	};
 	const userAgeInputHandler = (event) => {
-		setUserAge(event.target.value);
+		setEnteredUserAge(event.target.value);
+		console.log(enteredUserAge);
 	};
 
 	const formSubmitHandler = (event) => {
 		event.preventDefault();
-		const userId = Math.random().toString();
-		console.log(username, userAge, userId);
-		setUsername('');
-		setUserAge('');
+		const newUserData = {
+			username: enteredUsername,
+			userAge: enteredUserAge,
+			userId: Math.random().toString(),
+		};
+		props.onAddNewUser(newUserData);
+		setEnteredUsername('');
+		setEnteredUserAge('');
 	};
 
 	const button = {
@@ -31,11 +37,11 @@ const AddNewUserForm = () => {
 			<form onSubmit={formSubmitHandler}>
 				<div>
 					<label>Username</label>
-					<input type='text' value={username} onChange={usernameInputHandler} />
+					<input type='text' value={enteredUsername} onChange={usernameInputHandler} />
 				</div>
 				<div>
 					<label>Age (Years)</label>
-					<input type='number' value={userAge} onChange={userAgeInputHandler} />
+					<input type='number' value={enteredUserAge} onChange={userAgeInputHandler} />
 				</div>
 				<Button title={button.title} type={button.type} />
 			</form>
