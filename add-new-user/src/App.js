@@ -1,8 +1,12 @@
 import React from 'react';
 import { useState } from 'react';
-import AddNewUser from './components/Users/AddNewUserForm';
+import AddNewUserForm from './components/Users/AddNewUserForm';
 import UsersList from './components/Users/UsersList';
-import userData from './data/users.json';
+
+const initialUsers = [
+	{ username: 'Awil110', userAge: 20, userId: '01' },
+	{ username: 'level1', userAge: 22, userId: '02' },
+];
 
 function App() {
 	const [usersList, setUsersList] = useState(initialUsers);
@@ -15,8 +19,8 @@ function App() {
 
 	return (
 		<div>
-			<AddNewUser />
-			<UsersList users={usersList} onAddNewUser={addNewUserHandler} />
+			<AddNewUserForm onAddNewUser={addNewUserHandler} />
+			<UsersList users={usersList} />
 		</div>
 	);
 }
