@@ -9,9 +9,11 @@ const AddNewUserForm = (props) => {
 	const nameInputRef = useRef();
 	const ageInputRef = useRef();
 	// can attach to any HTML element
+	// input elements are uncrontrolled elements id manipulated via refs (not controlled via react)
 
 	// const [enteredUsername, setEnteredUsername] = useState('');
 	// const [enteredUserAge, setEnteredUserAge] = useState('');
+	// controlled input fields/components - manage/update/feed back the state
 	const [error, setError] = useState('');
 
 	// const usernameInputHandler = (event) => {
