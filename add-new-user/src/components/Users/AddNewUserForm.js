@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import Button from '../UI/Button';
 import Card from '../UI/Card';
 import ErrorModal from '../UI/ErrorModal';
@@ -6,16 +6,20 @@ import Wrapper from '../Helpers/Wrapper';
 import styles from '../../assets/AddNewUser.module.css';
 
 const AddNewUserForm = (props) => {
-	const [enteredUsername, setEnteredUsername] = useState('');
-	const [enteredUserAge, setEnteredUserAge] = useState('');
+	const nameInputRef = useRef();
+	const ageInputRef = useRef();
+	// can attach to any HTML element
+
+	// const [enteredUsername, setEnteredUsername] = useState('');
+	// const [enteredUserAge, setEnteredUserAge] = useState('');
 	const [error, setError] = useState('');
 
-	const usernameInputHandler = (event) => {
-		setEnteredUsername(event.target.value);
-	};
-	const userAgeInputHandler = (event) => {
-		setEnteredUserAge(event.target.value);
-	};
+	// const usernameInputHandler = (event) => {
+	// 	setEnteredUsername(event.target.value);
+	// };
+	// const userAgeInputHandler = (event) => {
+	// 	setEnteredUserAge(event.target.value);
+	// };
 
 	const errorHandler = () => {
 		setError('');
@@ -23,51 +27,58 @@ const AddNewUserForm = (props) => {
 
 	const formSubmitHandler = (event) => {
 		event.preventDefault();
-		if (enteredUsername.trim().length === 0 && enteredUserAge.trim().length === 0) {
+		const enteredName = nameInputRef.current.value;
+		const enteredAge = ageInputRef.current.value;
+		if (enteredName.trim().length === 0 && enteredAge.trim().length === 0) {
 			setError({
 				title: 'Invalid input',
 				message: 'Please enter username and user age!',
 			});
 			return;
-		} else if (enteredUsername.trim().length === 0) {
+		} else if (enteredName.trim().length === 0) {
 			setError({
 				title: 'Invalid username',
 				message: 'Please enter username!',
 			});
-			setEnteredUserAge('');
+			// setEnteredUserAge('');
 			return;
-		} else if (!enteredUserAge) {
+		} else if (enteredAge.trim().length === 0) {
 			setError({
 				title: 'Invalid age',
 				message: 'Please enter user age!',
 			});
-			setEnteredUserAge('');
+			// setEnteredUserAge('');
 			return;
-		} else if (+enteredUserAge < 1) {
+		} else if (+enteredAge < 1) {
 			setError({
 				title: 'Invalid age',
 				message: 'Please enter valid age (> 0)!',
 			});
-			setEnteredUserAge('');
-			return;
-		} else if (+enteredUserAge % 1 !== 0) {
-			setError({
-				title: 'Invalid age',
-				message: 'Please enter valid age (whole numbers)!',
-			});
-			setEnteredUserAge('');
+			// setEnteredUserAge('');
 			return;
 		}
+		//  else if (+enteredAge % 1 !== 0) {
+		// 	setError({
+		// 		title: 'Invalid age',
+		// 		message: 'Please enter valid age (whole numbers)!',
+		// 	});
+		// setEnteredUserAge('');
+		// 	return;
+		// }
 		const newUserData = {
-			username: enteredUsername,
-			userAge: enteredUserAge,
+			username: enteredName,
+			userAge: enteredAge,
 			userId: Math.random().toString(),
 		};
 		props.onAddNewUser(newUserData);
-		setEnteredUsername('');
-		setEnteredUserAge('');
+		nameInputRef.current.value = '';
+		ageInputRef.current.value = '';
+		// setEnteredUsername('');
+		// setEnteredUserAge('');
 	};
 
+	// value={enteredUsername} onChange={usernameInputHandler}
+	// value={enteredUserAge} onChange={userAgeInputHandler}
 	return (
 		<Wrapper>
 			{error && <ErrorModal title={error.title} message={error.message} onConfirm={errorHandler} />}
@@ -75,11 +86,11 @@ const AddNewUserForm = (props) => {
 				<form onSubmit={formSubmitHandler}>
 					<div>
 						<label htmlFor='username'>Username</label>
-						<input type='text' id='username' value={enteredUsername} onChange={usernameInputHandler} />
+						<input type='text' id='username' ref={nameInputRef} />
 					</div>
 					<div>
 						<label htmlFor='age'>Age (Years)</label>
-						<input type='number' id='age' value={enteredUserAge} onChange={userAgeInputHandler} />
+						<input type='number' id='age' ref={ageInputRef} />
 					</div>
 					<Button type={'submit'} onclick={formSubmitHandler}>
 						Add new user
