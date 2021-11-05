@@ -29,12 +29,14 @@ function App() {
 	};
 
 	return (
+		// context is only used in more complex cases - when passing props through multiple components etc
 		<AuthContext.Provider
 			value={{
 				isLoggedIn: isLoggedIn,
+				onLogout: logoutHandler,
 			}}
 		>
-			<MainHeader onLogout={logoutHandler} />
+			<MainHeader />
 			<main>
 				{!isLoggedIn && <Login onLogin={loginHandler} />}
 				{isLoggedIn && <Home onLogout={logoutHandler} />}
