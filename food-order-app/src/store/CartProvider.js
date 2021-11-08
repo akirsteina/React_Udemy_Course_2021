@@ -9,7 +9,7 @@ const defaultCartState = {
 };
 
 const cartReducer = (state, action) => {
-	if (action === 'ADD_CART_ITEM') {
+	if (action.type === 'ADD_CART_ITEM') {
 		const updatedItems = state.items.concat(action.item); // like push, but creates new array
 		const updatedTotalAmount = state.totalAmount + action.item.price * action.item.amount;
 		return {
@@ -17,7 +17,7 @@ const cartReducer = (state, action) => {
 			totalAmount: updatedTotalAmount,
 		};
 	}
-	if (action === 'REMOVE_CART_ITEM') {
+	if (action.type === 'REMOVE_CART_ITEM') {
 	}
 	return defaultCartState; //returns a new state snapshot
 };
