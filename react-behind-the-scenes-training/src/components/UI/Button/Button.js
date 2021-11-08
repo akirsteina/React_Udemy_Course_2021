@@ -11,5 +11,6 @@ const Button = (props) => {
 	);
 };
 
-export default Button;
+export default React.memo(Button);
 // demo on button does not work as identical objects (functions are objects in JS) are not equal
+// works with useCallback hook

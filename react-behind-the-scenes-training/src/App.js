@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 
 import Button from './components/UI/Button/Button';
 
@@ -10,11 +10,12 @@ function App() {
 
 	console.log('App running');
 
-	const toggleParagraphHandle = () => {
+	const toggleParagraphHandle = useCallback(() => {
 		setShowParagraph((previousShowParagraph) => {
 			return !previousShowParagraph;
 		});
-	};
+	}, []);
+	// useCallback will save a function of our choice in react memory and allow to reuse this
 
 	return (
 		<div className='app'>
