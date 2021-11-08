@@ -6,3 +6,4 @@ const DemoOutput = (props) => {
 };
 
 export default React.memo(DemoOutput); //only if value of props chages, funtion shold be reexecuted
+// pick key parts in component tree to cut out whole branches
