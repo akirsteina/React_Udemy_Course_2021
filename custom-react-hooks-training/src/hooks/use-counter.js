@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 
 // function name for custom hook !!! has to start with 'use'
 const useCounter = (forwards = true) => {
+	//default value = true, can remove from forwardcounter
 	const [counter, setCounter] = useState(0);
 
 	useEffect(() => {
@@ -14,7 +15,7 @@ const useCounter = (forwards = true) => {
 		}, 1000);
 
 		return () => clearInterval(interval);
-	}, []);
+	}, [forwards]);
 
 	return counter;
 };
