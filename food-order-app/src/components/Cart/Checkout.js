@@ -1,49 +1,38 @@
 import { useState } from 'react/cjs/react.development';
 import styles from '../../assets/Checkout.module.css';
 
+const containsValue = (value) => value.trim() !== '';
+
 const CheckOut = (props) => {
 	const [enteredName, setEnteredName] = useState('');
-	const [nameInputIsValid, setNameInputIsValid] = useState(true);
 	const [nameInputTouched, setNameInputTouched] = useState(false);
 	// const [nameInputError, setNameInputError] = useState(null);
 
-	// let formIsValid = false;
-	// if (nameInputIsValid) {
-	// 	formIsValid = true;
-	// }
+	const enteredNameIsValid = containsValue(enteredName);
+	const nameInputIsInvalid = !enteredNameIsValid && nameInputTouched;
+
+	let formIsValid = false;
+	if (enteredNameIsValid) {
+		formIsValid = true;
+	}
 
 	const enteredNameHandler = (event) => {
 		setEnteredName(event.target.value);
-		if (event.target.value.trim() !== '') {
-			setNameInputIsValid(true);
-			return;
-		}
 	};
 
 	const nameBlurHandler = () => {
 		setNameInputTouched(true);
-		if (enteredName.trim() === '') {
-			setNameInputIsValid(false);
-			return;
-		}
 	};
 
 	const checkoutSubmitHandler = (event) => {
 		event.preventDefault();
-
 		setNameInputTouched(true);
-
-		if (enteredName.trim() === '') {
-			setNameInputIsValid(false);
+		if (!formIsValid) {
 			return;
 		}
-		setNameInputIsValid(true);
-		console.log('Submitted: ', enteredName);
-
 		setEnteredName('');
+		setNameInputTouched(false);
 	};
-
-	const nameInputIsInvalid = !nameInputIsValid && nameInputTouched;
 
 	const nameInputClasses = nameInputIsInvalid ? `${styles.control} ${styles.invalid}` : `${styles.control}`;
 
