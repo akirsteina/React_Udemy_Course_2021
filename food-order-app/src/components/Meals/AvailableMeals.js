@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import Card from '../UI/Card';
 import MealItem from './MealItem';
 
@@ -7,10 +7,9 @@ import styles from '../../assets/AvailableMeals.module.css';
 const AvailableMeals = () => {
 	const [meals, setMeals] = useState([]);
 	const [error, setError] = useState(null);
-	const [isloading, setIsLoading] = useState(false);
+	const [isloading, setIsLoading] = useState(true);
 
 	const fetchMealsHandler = async () => {
-		setIsLoading(true);
 		setError(null);
 
 		try {
@@ -45,12 +44,12 @@ const AvailableMeals = () => {
 
 	const mealsList = meals.map((meal) => <MealItem key={meal.id} id={meal.id} name={meal.name} description={meal.description} price={meal.price} />);
 
-	let content = <p>No meals found</p>;
+	let content = <p className={styles['meals-message']}>No meals found</p>;
 	if (meals.length > 0) {
 		content = mealsList;
 	}
 	if (error) {
-		content = <p>{error}</p>;
+		content = <p className={styles['meals-message']}>{error}</p>;
 	}
 	if (isloading) {
 		content = <p>Loading...</p>;
