@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState } from 'react';
 import useHttp from './hooks/use-http';
 
 import Tasks from './components/Tasks/Tasks';
