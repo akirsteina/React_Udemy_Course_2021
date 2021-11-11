@@ -43,7 +43,7 @@ const Cart = (props) => {
 					'Content-Type': 'application/json',
 				},
 			});
-			console.log(response.ok);
+
 			if (!response.ok) {
 				throw new Error('Something went wrong!');
 			}
