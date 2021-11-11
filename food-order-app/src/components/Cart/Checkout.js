@@ -64,7 +64,7 @@ const CheckOut = (props) => {
 	const cityInputClasses = cityInputHasError ? `${styles.control} ${styles.invalid}` : `${styles.control}`;
 
 	return (
-		<form onSubmit={checkoutSubmitHandler}>
+		<form onSubmit={checkoutSubmitHandler} className={styles.form}>
 			<div className={nameInputClasses}>
 				<label htmlFor='name'>Your name</label>
 				<input type='text' id='name' onChange={enteredNameHandler} onBlur={nameBlurHandler} value={enteredName} />
@@ -89,7 +89,7 @@ const CheckOut = (props) => {
 				<button type='button' onClick={props.onCancel}>
 					Cancel
 				</button>
-				<button type='submit' disabled={!formIsValid}>
+				<button type='submit' className={styles.submit} disabled={!formIsValid}>
 					Confirm
 				</button>
 			</div>

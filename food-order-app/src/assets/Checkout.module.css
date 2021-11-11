@@ -1,7 +1,8 @@
 .form {
 	margin: 1rem 0;
 	height: 19rem;
-	overflow: auto;
+	overflow: scroll;
+	overflow-x: hidden;
 }
 
 .control {
@@ -61,17 +62,4 @@
 .invalid input {
 	border-color: #aa0b20;
 	background-color: #ffeff1;
-}
-
-.error {
-	color: #ca3e51;
-}
-
-button:disabled,
-button:disabled:hover,
-button:disabled:active {
-	background-color: #ccc;
-	color: #292929;
-	border-color: #ccc;
-	cursor: not-allowed;
 }
