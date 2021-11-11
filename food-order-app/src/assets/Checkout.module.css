@@ -55,6 +55,13 @@
 	background-color: #7a2706;
 }
 
+button:disabled,
+button:disabled:hover,
+button:disabled:active {
+	color: #292929;
+	cursor: not-allowed;
+}
+
 .invalid label {
 	color: #ca3e51;
 }
@@ -62,4 +69,8 @@
 .invalid input {
 	border-color: #aa0b20;
 	background-color: #ffeff1;
+}
+
+.error {
+	color: #ca3e51;
 }

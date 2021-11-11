@@ -51,7 +51,13 @@ const CheckOut = (props) => {
 		if (!formIsValid) {
 			return;
 		}
-		console.log(enteredName, enteredStreet, enteredPostal, enteredCity);
+		const userData = {
+			name: enteredName,
+			street: enteredStreet,
+			zip: enteredPostal,
+			city: enteredCity,
+		};
+		props.onConfirm(userData);
 		resetNameInput();
 		resetStreetInput();
 		resetPostalInput();
