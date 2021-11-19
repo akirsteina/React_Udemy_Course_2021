@@ -5,8 +5,8 @@ import classes from './Counter.module.css';
 const Counter = () => {
 	// automatically sets up subscription to store
 	const dispatch = useDispatch();
-	const counter = useSelector((state) => state.counter);
-	const show = useSelector((state) => state.showCounter);
+	const counter = useSelector((state) => state.counter.counter);
+	const show = useSelector((state) => state.counter.showCounter);
 
 	// const incrementHandler = () => {
 	// 	dispatch({ type: 'increment' });
@@ -42,7 +42,7 @@ const Counter = () => {
 			{show && <div className={classes.value}>{counter}</div>}
 			<div>
 				<button onClick={incrementHandler}>Increment</button>
-				<button onClick={increaseHandler}>Increase by 5</button>
+				<button onClick={increaseHandler}>Increase by 10</button>
 				<button onClick={decrementHandler}>Decrement</button>
 			</div>
 			<button onClick={toggleCounterHandler}>Toggle Counter</button>
