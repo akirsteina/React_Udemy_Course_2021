@@ -8,10 +8,14 @@ const MainHeader = () => {
 			<nav className={classes.nav}>
 				<ul>
 					<li>
-						<NavLink to='/quotes'>All quotes</NavLink>
+						<NavLink to='/quotes' activeClassName={classes.active}>
+							All quotes
+						</NavLink>
 					</li>
 					<li>
-						<NavLink to='/new-quote'>Add new</NavLink>
+						<NavLink to='/new-quote' activeClassName={classes.active}>
+							Add new
+						</NavLink>
 					</li>
 				</ul>
 			</nav>
