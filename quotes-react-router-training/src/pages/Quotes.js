@@ -1,18 +1,17 @@
-import { NavLink } from 'react-router-dom';
 import { Fragment } from 'react/cjs/react.production.min';
+import QuoteList from '../components/quotes/QuoteList';
+
+const DUMMY_DATA = [
+	{ id: 'q1', author: 'Anna', text: 'All is well!' },
+	{ id: 'q2', author: 'Janis', text: 'Not all those who wander are lost' },
+	{ id: 'q3', author: 'Marta', text: 'Always' },
+];
 
 const Quotes = () => {
 	return (
 		<Fragment>
 			<h1>All quotes</h1>
-			<ul>
-				<li>
-					<NavLink to='/quotes/q1'>Quote 1</NavLink>
-				</li>
-				<li>
-					<NavLink to='/quotes/q2'>Quote 2</NavLink>
-				</li>
-			</ul>
+			<QuoteList quotes={DUMMY_DATA} />
 		</Fragment>
 	);
 };
