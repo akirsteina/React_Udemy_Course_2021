@@ -1,5 +1,4 @@
 import { useEffect } from 'react/cjs/react.development';
-import { Fragment } from 'react/cjs/react.production.min';
 
 import useHttp from '../hooks/use-http';
 import { getAllQuotes } from '../lib/api';
