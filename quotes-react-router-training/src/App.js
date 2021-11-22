@@ -4,7 +4,7 @@ import {
 	Switch,
 	Redirect,
 } from 'react-router-dom';
-import MainHeader from './components/comments/MainHeader';
+import MainHeader from './components/layout/MainHeader';
 import Quotes from './pages/Quotes';
 import QuoteDetail from './pages/QuoteDetail';
 import AddNewQuote from './pages/AddNewQuote';
