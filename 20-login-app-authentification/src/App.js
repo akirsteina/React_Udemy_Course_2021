@@ -1,4 +1,4 @@
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import { useContext } from 'react';
 import AuthContext from './store/auth-context';
 import Layout from './components/Layout/Layout';
@@ -14,14 +14,18 @@ function App() {
 				<Route path='/' exact>
 					<HomePage />
 				</Route>
-				<Route path='/auth'>
-					<AuthPage />
-				</Route>
-				{authCtx.isLoggedIn && (
-					<Route path='/profile'>
-						<UserProfile />
+				{!authCtx.isLoggedIn && (
+					<Route path='/auth'>
+						<AuthPage />
 					</Route>
 				)}
+				<Route path='/profile'>
+					{authCtx.isLoggedIn && <UserProfile />}
+					{!authCtx.isLoggedIn && <Redirect to='/auth' />}
+				</Route>
+				<Route path='*'>
+					<Redirect to='/' />
+				</Route>
 			</Switch>
 		</Layout>
 	);
