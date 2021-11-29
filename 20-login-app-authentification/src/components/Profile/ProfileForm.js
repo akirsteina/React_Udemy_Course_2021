@@ -9,6 +9,7 @@ const ProfileForm = () => {
 	const newPasswordInputRef = useRef();
 	const authCtx = useContext(AuthContext);
 	const history = useHistory();
+
 	const submitHandler = (event) => {
 		event.preventDefault();
 		const enteredNewPassword = newPasswordInputRef.current.value;
