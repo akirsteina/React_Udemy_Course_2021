@@ -1,6 +1,7 @@
 // ourdomain.com/news
 
 import { Fragment } from 'react';
+import Link from 'next/link';
 
 const NewsPage = () => {
 	return (
@@ -8,13 +9,13 @@ const NewsPage = () => {
 			<h1>The news page</h1>
 			<ul>
 				<li>
-					<a href='/news/news-are-cool'>News are cool</a>
+					<Link href='/news/news-are-cool'>News are cool</Link>
 				</li>
 				<li>
-					<a href='/news/tuesday'>Today is Thursday</a>
+					<Link href='/news/tuesday'>Today is Thursday</Link>
 				</li>
 				<li>
-					<a href='news/xmas'>Christmas is coming</a>
+					<Link href='news/xmas'>Christmas is coming</Link>
 				</li>
 			</ul>
 		</Fragment>
