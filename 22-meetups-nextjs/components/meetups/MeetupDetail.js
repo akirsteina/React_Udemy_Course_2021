@@ -1,16 +1,13 @@
-import { Fragment } from 'react';
+import classes from './MeetupDetail.module.css';
 
 const MeetupDetail = (props) => {
 	return (
-		<Fragment>
-			<img
-				src='https://images.freeimages.com/images/large-previews/ce3/city-1570944.jpg'
-				alt='A first meetup'
-			/>
-			<h1>A first meetup</h1>
-			<address>Some address</address>
-			<p>Meetup description</p>
-		</Fragment>
+		<section className={classes.detail}>
+			<img src={props.image} alt={props.title} />
+			<h1>{props.title}</h1>
+			<address>{props.address}</address>
+			<p>{props.description}</p>
+		</section>
 	);
 };
 
