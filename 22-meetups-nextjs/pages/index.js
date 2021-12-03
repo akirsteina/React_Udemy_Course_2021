@@ -29,8 +29,23 @@ const DUMMY_MEETUPS = [
 	},
 ];
 
-const HomePage = () => {
-	return <MeetupList meetups={DUMMY_MEETUPS} />;
+const HomePage = (props) => {
+	return <MeetupList meetups={props.meetups} />;
+};
+
+// only works in page components
+// has to be called getStaticProps
+// load data before the component function is executed
+// this code is not executed on client side and is only executed during the build
+export const getStaticProps = async () => {
+	// fetch data
+
+	// always need to return object
+	return {
+		props: {
+			meetups: DUMMY_MEETUPS,
+		},
+	};
 };
 
 export default HomePage;
