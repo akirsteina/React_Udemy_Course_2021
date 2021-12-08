@@ -1,17 +1,26 @@
 // ourdomain.com/[meetupId]
 import { MongoClient, ObjectId } from 'mongodb';
+import { Fragment } from 'react';
+import Head from 'next/head';
+
 import MeetupDetail from '../components/meetups/MeetupDetail';
 
 const REACT_APP_DB_URL = process.env.REACT_APP_DB_URL;
 
 const MeetupDetails = (props) => {
 	return (
-		<MeetupDetail
-			image={props.meetupData.image}
-			title={props.meetupData.title}
-			address={props.meetupData.address}
-			description={props.meetupData.description}
-		/>
+		<Fragment>
+			<Head>
+				<title>{props.meetupData.title}</title>
+				<meta name='description' content={props.meetupData.description} />
+			</Head>
+			<MeetupDetail
+				image={props.meetupData.image}
+				title={props.meetupData.title}
+				address={props.meetupData.address}
+				description={props.meetupData.description}
+			/>
+		</Fragment>
 	);
 };
 
