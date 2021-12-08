@@ -4,6 +4,8 @@
 
 import { MongoClient } from 'mongodb';
 
+const DB_URL = process.env.REACT_APP_DB_URL;
+
 // only post requests
 const handler = async (req, res) => {
 	if (req.method === 'POST') {
@@ -11,9 +13,7 @@ const handler = async (req, res) => {
 
 		// this is a code you never want to run on client side
 		// but this is a secure place
-		const client = await MongoClient.connect(
-			'mongodb+srv://akirsteina:N7v4iPX1ngw5EfcG@cluster0.arehk.mongodb.net/meetups?retryWrites=true&w=majority'
-		);
+		const client = await MongoClient.connect(`${DB_URL}`);
 
 		const db = client.db();
 
