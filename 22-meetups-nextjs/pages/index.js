@@ -2,9 +2,12 @@
 
 // if imported package is used only in getstaticprops or getserversideprops, it is not rendered in client side bundle
 import { MongoClient } from 'mongodb';
+import Head from 'next/head';
+import { Fragment } from 'react';
+
 import MeetupList from '../components/meetups/MeetupList';
 
-const DB_URL = process.env.REACT_APP_DB_URL;
+const REACT_APP_DB_URL = process.env.REACT_APP_DB_URL;
 
 // const DUMMY_MEETUPS = [
 // 	{
@@ -34,7 +37,18 @@ const DB_URL = process.env.REACT_APP_DB_URL;
 // ];
 
 const HomePage = (props) => {
-	return <MeetupList meetups={props.meetups} />;
+	return (
+		<Fragment>
+			<Head>
+				<title>Meetups</title>
+				<meta
+					name='description'
+					content='Browse a list of highly active React meetups'
+				/>
+			</Head>
+			<MeetupList meetups={props.meetups} />
+		</Fragment>
+	);
 };
 
 // only works in page components
@@ -43,7 +57,7 @@ const HomePage = (props) => {
 // this code is not executed on client side and is only executed during the build
 export const getStaticProps = async () => {
 	// fetch data
-	const client = await MongoClient.connect(`${DB_URL}`);
+	const client = await MongoClient.connect(`${REACT_APP_DB_URL}`);
 	const db = client.db();
 	const meetupsCollection = db.collection('meetups');
 	// by default returns all deocuments
