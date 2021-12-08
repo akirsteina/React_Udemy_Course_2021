@@ -17,7 +17,7 @@ const handler = async (req, res) => {
 
 		const db = client.db();
 
-		const meetupsCollection = db.collection('');
+		const meetupsCollection = db.collection('meetups');
 
 		// insert one new document in to the collection
 		// document == object
