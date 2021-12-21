@@ -58,3 +58,19 @@
 		transform: translateY(-100%);
 	}
 }
+
+/* removed after 1 frame */
+.fade-slide-enter {
+}
+
+.fade-slide-enter-active {
+	animation: openModal 0.4s ease-out forwards;
+}
+
+/* removed after 1 frame */
+.fade-slide-exit {
+}
+
+.fade-slide-exit-active {
+	animation: closeModal 1s ease-out forwards;
+}
