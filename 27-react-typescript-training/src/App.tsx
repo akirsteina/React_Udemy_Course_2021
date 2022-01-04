@@ -12,9 +12,15 @@ function App() {
 		setTodoList((prevList) => [...prevList, newTodo]);
 	};
 
+	const removeTodoHandler = (id: string) => {
+		setTodoList((prevState) => {
+			return prevState.filter((todo) => todo.id !== id);
+		});
+	};
+
 	return (
 		<div>
-			<Todos items={todoList} />
+			<Todos items={todoList} onDeleteTodo={removeTodoHandler} />
 			<NewTodo onAddTodo={addTodoHandler} />
 		</div>
 	);
